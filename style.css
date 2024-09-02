@@ -194,10 +194,12 @@ body::after {
 }
 
 .progress-bar {
-    background: hsl(var(--clr-drk-blue-900), .5);
+    background: var(--very_dark_blue);
     border-radius: 35px;
     height: 1.2rem;
     position: relative;
+    z-index: 5;
+    margin: 10px;;
   }
   
   .progress-bar::before {
