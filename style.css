@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --gradient_start: hsl(6, 100%, 80%);
+    --gradient_end: hsl(335, 100%, 65%);
+    --pale_blue: hsl(243, 100%, 93%);
+    --very_dark_blue:hsl(229, 57%, 11%);
+    --dark_blue: hsl(228, 56%, 26%);
+    --grayish_blue: hsl(229, 7%, 55%);
+
+    --ff: "Raleway", sans-serif;
+
+    --fw-400: 400;
+    --fw-700: 700;
+
+}
+
+/*body {
+    font-family: "Raleway";
+    background-color: var(--very_dark_blue);
+    background-image: url("./images/bg-desktop.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+    color: white;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    min-height: 100vh; 
+}
+*/
+
+body {
+    font-family: "Raleway";
+    background-color: var(--very_dark_blue);
+    scroll-behavior: smooth;
+    color: white;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+    min-height: 100vh; /*100% of viewport*/
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50vh; /* Make the pseudo-element take up 50% of the viewport height */
+    background-image: url('./images/bg-desktop.png'); /* Replace with your image URL */
+    background-size: cover; /* Cover the pseudo-element area with the image */
+    background-position: top right; /* Center the image within the pseudo-element */
+    background-repeat: no-repeat; /* Prevent tiling */
+    z-index: -1; /* Place the background behind any content in the container */
+
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+     scroll-behavior: auto;
+    }
+  
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+/* Tiles */
+/* Structure*/
+#tile_container {
+    display: grid;
+    grid-template-columns: minmax(300px,350px) minmax(300px, 500px);
+    grid-template-rows: 50px 50px auto;
+}
+
+@media screen and (max-width:550px) {
+    body {
+        background-image: url(./images/bg-mobile.png);
+        background-color: var(--dark_blue);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    body::after {
+        background-image: url(./images/bg-mobile.png);
+        background-color: var(--dark_blue);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        height: 100vh;
+      }
+    
+
+    #tile_container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #remaining_container {
+        position: relative;
+        bottom: 60px;
+        right: 0;
+        left: 25%;
+    }
+
+    #remaining_container::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0.5rem; /* hides it behind box because I couldn't get rid of it*/
+        z-index: 0;
+      }
+
+}
+
+/* General styles */
+.tile {
+    border-radius: 1rem;
+    padding: 10px 10px;
+    margin: 20px;
+}
+
+.blue {
+    background-color: var(--dark_blue);
+}
+
+.white {
+    background-color: white;
+    color: var(--very_dark_blue);
+}
+
+/* Title tile */
+#title_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-area: 1 / 1 / span 3 / span 1;
+    border-top-right-radius: 5rem;
+    justify-content: center;
+}
+
+#title {
+    padding: 10px;
+    width: 140px;
+    position: relative;
+    top: 10px;
+    left: 10px
+}
+
+#icons {
+    display: flex;
+    padding: 10px;
+}
+
+.icon_holder {
+    background-color: var(--very_dark_blue);
+    border-radius: 20%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 10px;
+}
+
+.icon {
+    height: fit-content;
+    cursor: pointer;
+    transform: scale(0.9);
+    transition: all .2s ease;
+}
+
+.icon:hover {
+    transform: scale(1.1)
+}
+
+/* Storage tile*/
+#storage_container {
+    grid-area: 2 / 2 / span 2 / span 1;
+}
+
+#sentence {
+    padding: 0px 10px;
+}
+
+.progress-bar {
+    background: hsl(var(--clr-drk-blue-900), .5);
+    border-radius: 35px;
+    height: 1.2rem;
+    position: relative;
+  }
+  
+  .progress-bar::before {
+    content: '';
+    background: rgb(255, 163, 153);
+    background: -moz-linear-gradient(90deg, rgba(255, 163, 153, 1) 15%, rgba(255, 77, 151, 1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(255, 163, 153, 1) 15%, rgba(255, 77, 151, 1) 100%);
+    background: linear-gradient(90deg, rgba(255, 163, 153, 1) 15%, rgba(255, 77, 151, 1) 100%);
+    border-radius: 35px;
+    height: .9rem;
+    top: 50%;
+    left: .195rem;
+    transform: translateY(-50%);
+    width: 81.5%;/*12.5rem;*/
+    position: absolute;
+  }
+  
+  .progress-bar::after {
+    content: '';
+    background: white;
+    border-radius: 50%;
+    height: .65rem;
+    top: 50%;
+    left: 81.5%;
+    transform: translateY(-50%) translateX(-100%);
+    width: .65rem;
+    position: absolute;
+  }
+
+  .data-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: .8rem;
+    font-weight: 700;
+    padding-top: .5rem;
+    padding-bottom: 1rem;
+    
+  }
+  
+
+/* Remaining tile*/
+#remaining_container {
+    position: relative;
+    right: 50px;
+    grid-area: 1 / 2 / span 2 / span 1;
+    width: 100px;
+    justify-self: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.6rem;
+}
+
+#remaining_container::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -0.5rem;
+    height: 1rem;
+    width: 2rem;
+    background-color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+  }
+
+#remaining_container:hover {
+    cursor: pointer;
+    animation: bubbleHop 1.75s ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+#highlight {
+    margin: 5px;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+#subtle {
+    text-transform: uppercase;
+    font-size: xx-small;
+}
+
+/* Animations */
+@keyframes bubbleHop {
+    from {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(.3rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
